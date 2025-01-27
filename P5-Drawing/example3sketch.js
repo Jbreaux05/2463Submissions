@@ -9,9 +9,9 @@ function draw() {
   fill(64,255,255);
   arc(100,100,150,150,225,135);
 
+  noStroke();
   fill(0,255,255);
   arc(300,100,150,150,180,0);
-  noStroke();
   rect(225,100,150,75);
   fill('white');
   circle(265,100,40);
