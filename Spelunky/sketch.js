@@ -5,9 +5,9 @@ let character2;
 let character3;
 
 function preload() {
-  spelunkyguy = loadImage("media/minerguy.png");
-  gardengirl = loadImage("media/gardengirl.png");
-  yellowgirl = loadImage("media/yellowgirl.png");
+  spelunkyguy = loadImage("Jbreaux05/2463Submissions/spelunky/media/minerguy.png");
+  gardengirl = loadImage("Jbreaux05/2463Submissions/spelunky/media/gardengirl.png");
+  yellowgirl = loadImage("Jbreaux05/2463Submissions/spelunky/media/yellowgirl.png");
 }
 
 function setup() {
