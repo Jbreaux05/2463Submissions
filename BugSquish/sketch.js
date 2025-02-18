@@ -24,14 +24,11 @@ function setup() {
   textFont(gameFont);
   imageMode(CENTER);
 
+  //Ensures spritesheet is loaded before setup
   if (!greenbug) {
     console.error("Greenbug image failed to load.");
     return;
   }
-
-  /*for (let i = 0; i < 5; i++) {
-    bugs.push(new Bug(random(width), random(height), globalSpeed));
-  }*/
 }
 
 function draw() {
@@ -40,8 +37,16 @@ function draw() {
   switch(gameState) {
     case GameStates.START:
       textAlign(CENTER,CENTER);
+      textSize(35);
+      text("BUG SQUISH", width/2, height/2 - 150);
+      if (!greenbug) {
+        console.error("Greenbug image failed to load.");
+        return;
+      }
+      image(greenbug, width/2, height/2, 240, 240, 240, 480, 240, 240);
+      textAlign(CENTER,CENTER);
       textSize(18);
-      text("Press ENTER to Start", width/2,height/2)
+      text("Press ENTER to Start", width/2,height/2 + 150);
       break;
     case GameStates.PLAY:
       textSize(16);
@@ -98,7 +103,7 @@ function mouseClicked() {
   if (gameState === GameStates.PLAY) {
     for (let i = bugs.length - 1; i >= 0; i--) {
       if (bugs[i].checkClick(mouseX, mouseY)) {
-        globalSpeed *= 1.05;
+        globalSpeed *= 1.05; //Speeds up the bugs slightly after every squished by
         bugs.push(new Bug(random(width), random(height), globalSpeed));
         for (let b of bugs) b.speed = globalSpeed;
         break;
@@ -117,7 +122,8 @@ class Bug {
     this.animations = {};
     this.facingDirection = "right";
 
-    if (greenbug) { // Ensure greenbug is loaded before assigning animations
+    //Ensures spritesheet is loaded before assigning animations
+    if (greenbug) { 
       this.addAnimation();
       this.currentAnimation = this.animations[this.direction];
     } else {
