@@ -20,6 +20,9 @@ function preload() {
 
 function setup() {
   createCanvas(400, 400);
+  if (!samples) {
+    console.error("Samples Failed to Load");
+  }
   button1 = createButton("Play Dog Sample");
   button1.position(20,55);
   button1.mousePressed(() => {samples.player("dog").start()});
