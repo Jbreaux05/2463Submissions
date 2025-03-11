@@ -9,7 +9,6 @@ function setup() {
   createCanvas(400, 400);
   imageMode(CENTER);
  
-  // Create a simple FM synth
   synth = new Tone.FMSynth({
     harmonicity: 2.5,
     modulationIndex: 10,
@@ -20,15 +19,14 @@ function setup() {
       release: 0.2
     },
     modulation: {
-      type: "square"
+      type: "square" //modulation
     }
   }).toDestination();
   synth.volume.value = 0;
-  
-  // Create noise for impact
-  noise = new Tone.Noise("white");
-  filter = new Tone.Filter(1000, "lowpass").toDestination();
-  noiseEnv = new Tone.AmplitudeEnvelope({
+
+  noise = new Tone.Noise("white"); //noise
+  filter = new Tone.Filter(1000, "lowpass").toDestination(); //filter
+  noiseEnv = new Tone.AmplitudeEnvelope({ //Envelope
     attack: 0.005,
     decay: 0.1,
     sustain: 0.0,
@@ -39,7 +37,7 @@ function setup() {
   filter.connect(noiseEnv);
   noise.volume.value = -10;
 
-  lfo = new Tone.LFO(5, 500, 1500).connect(filter.frequency).start();
+  lfo = new Tone.LFO(5, 500, 1500).connect(filter.frequency).start(); //LFO modulation
 
 }
 
@@ -57,14 +55,13 @@ function draw() {
 
 function mousePressed() {
   playing = true;
-  
-  // Play the FM synth and noise together
+
   synth.triggerAttackRelease("C4", "4n");
   noise.start();
   noiseEnv.triggerAttackRelease("8n");
   
   setTimeout(() => {
     playing = false;
-    noise.stop(); // Stop the noise after the envelope release
+    noise.stop();
   }, 750);
 }
