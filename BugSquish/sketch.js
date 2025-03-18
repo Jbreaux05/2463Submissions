@@ -151,8 +151,8 @@ function draw() {
       textSize(18);
       text("Press ENTER to Start", width/2,height/2 + 150);
       if (!hasInteracted) {
-        textSize(12);
-        text("Click anywhere to enable sound", width/2, height - 30);
+        textSize(10);
+        text("REQUIRED: Click anywhere to enable sound", width/2, height - 30);
       }
 
       break;
